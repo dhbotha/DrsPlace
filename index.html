@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" style="margin:0; padding:0">
+<head>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+    <title>Dr's Place</title>
+
+    <link href="CSS/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="CSS/nav.css" />
+    <link href="CSS/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="CSS/hover-min.css" rel="stylesheet" />
+
+    <script src="../JS/jquery-3.1.0.min.js"></script>
+    <script src="../JS/modernizr.js"></script>
+    <script src="../JS/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/69060edd3e.js"></script>
+
+    <style>
+        .dropShadow {
+            border-radius: 10px;
+            background: rgba(255, 255, 255,0.7);
+            box-shadow: 10px 10px 10px #000000;
+            outline: none;
+        }
+
+        .centerDiv {
+            text-align: center;
+            width: 100%;
+            align-content: center;
+        }
+
+        .mySlides {
+            display: none;
+            margin-left: auto;
+            margin-right: auto;
+            width: 95%;
+            box-shadow: -10px 10px 10px #000000;
+        }
+    </style>
+
+
+
+</head>
+<!--<body id="body" style="background :url('IMAGES/Background_horse.jpg'); background-attachment:fixed; background-size:100%; padding-top:1em; padding-bottom:0;">-->
+<body style="background-color:#b9c0cf; padding:0; margin:0;">
+    <!--<body id="body"  style=" background:rgb(59,59,59); background-attachment:fixed; background-size:100%; padding-top:1em; padding-bottom:0;"> -->
+    <!--<div id="circ" style="background:rgba(255,255,255,0.7); border-radius:100px; box-shadow:rgba(0,0,0,0.4) 7px 7px 4px;  height:165px; position:absolute; left:71%; top:58%; margin-left:-50px; margin-top:-50px;"><img src="circ3.png" /></div>-->
+    <div id="main" style="display:none">
+
+        <div id="div" style="width:100%;  text-align:center;">
+            <header style="background-color:#b9c0cf;padding-top:10px">
+                <img id="logo" src="IMAGES/Logo_final.png" />
+            </header>
+        </div>
+
+        <nav id="topNav">
+            <ul>
+                <li class="hvr-float-shadow"><a href="javascript:change('index')" title="Home">Home</a></li>
+                <li class="hvr-float-shadow">
+                    <a href="#" title="Accomodation">Accomodation</a>
+                    <ul>
+                        <li><a href="javascript:change('ROOM_LAVENDER')" title="Lavender Room">Lavender Room</a></li>
+                        <li><a href="javascript:change('ROOM_LILLY')" title="Lilly">Lilly</a></li>
+                        <li><a href="javascript:change('ROOM_RYKIE')" title="Rykie's Room">Rykie's Room</a></li>
+                        <li><a href="javascript:change('ROOM_MORNING')" title="Morning Glory">Morning Glory</a></li>
+                        <li><a href="javascript:change('ROOM_ROSE')" title="Rose Room">Rose Room</a></li>
+                    </ul>
+                </li>
+                <li class="hvr-float-shadow"><a href="javascript:change('TODO')" title="Things to do">Things to do </a></li>
+                <li class="hvr-float-shadow"><a href="javascript:change('CONTACT')" title="About">Contact Us</a></li>
+                <li class="hvr-float-shadow"><a href="javascript:change('VIDEOS')" title="Videos">Media</a></li>
+            </ul>
+        </nav>
+        <div class="centerDiv">
+            <div id="images">
+                <img class="mySlides" src="../IMAGES/HouseFront.png">
+                <img class="mySlides" src="../IMAGES/TreeBack.png">
+                <img class="mySlides" src="../IMAGES/Landscape.png">
+            </div>
+            <iframe id="iFrame" style="border:none; display:none; height:450px; width:1200px; margin:0 auto; padding:2px 2px 0 0; background-color:#b9c0cf !important;"></iframe>
+        </div>
+
+        <div style="height:10px;"></div>
+
+        <div id="bottom" style="bottom:0px; border-radius:5px; height:25px; text-align:center; background:rgba(0,0,0,0.5); width:990px; margin:0 auto">
+            <a style="font-family:Calibri; color:white; text-decoration:none">|Home|</a>
+            <a style="font-family:Calibri; color:white">|References|</a>
+            <a style="font-family:Calibri; color:white">|Contact|</a>
+            <a style="font-family:Calibri; color:white">|Careers|</a>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $(document).show(function () {
+                $("#main").hide();
+                $("#iFrame").attr({ scrolling: "no" });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#main").show("slow");
+        });
+    </script>
+
+    <script>
+        (function ($) {
+
+            //cache nav
+            var nav = $("#topNav");
+
+            //add indicator and hovers to submenu parents
+            nav.find("li").each(function () {
+                if ($(this).find("ul").length > 0) {
+                    $("<span>").text("^").appendTo($(this).children(":first"));
+
+                    //show subnav on hover
+                    $(this).mouseenter(function () {
+                        $(this).find("ul").stop(true, true).slideDown();
+                    });
+
+                    //hide submenus on exit
+                    $(this).mouseleave(function () {
+                        $(this).find("ul").stop(true, true).slideUp();
+                    });
+                }
+            });
+        })(jQuery);
+    </script>
+
+    <script>
+
+
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > x.length) { slideIndex = 1 }
+            x[slideIndex - 1].style.display = "block";
+            setTimeout(carousel, 3500);
+        }
+        function mouseover(id, image) {
+            document.getElementById(id).src = image + '.png';
+        }
+
+        function mouseout(id, image) {
+            document.getElementById(id).src = image + '.png';
+        }
+
+        function change(name) {
+
+            if (name == "index") {
+                $("#images").show("slow");
+                $("#iFrame").hide("slow");
+            }
+            else {
+
+                $("#images").hide("slow");
+
+                $("#iFrame").hide("slow", function () {
+
+                    $("#iFrame").attr("src", "PAGES/" + name + ".html");
+                });
+                $("#iFrame").show("slow");
+
+                if (name == 'ABOUT') {
+                    $("#iFrame").animate({ height: "480px" });
+                }
+                else if (name == 'CONTACT' || name == 'TODO') {
+                    $("#iFrame").animate({ height: "950px" });
+                }
+                else if (name == 'HOME') {
+                    $("#iFrame").animate({ height: "450px" });
+                }
+                else if (name.indexOf("ROOM") != -1) {
+                    $("#iFrame").animate({ height: "550" });
+                }
+                else if (name == 'GALLERY') {
+                    $("#iFrame").animate({ height: "800px" });
+                }
+                else if (name == 'VIDEOS') {
+                    $("#iFrame").animate({ height: "700px" });
+                }
+            }
+        }
+    </script>
+</body>
+</html>

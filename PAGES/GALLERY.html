@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../JS/jquery-3.1.0.min.js"></script>
+    <script src="../js/modernizr.js"></script>
+    <script src="../JS/bootstrap.min.js"></script>
+
+    <style>
+        .centerDiv {
+            text-align: center;
+            width: 100%;
+            align-content: center;
+        }
+
+        .mySlides {
+            margin-left: auto;
+            margin-right: auto;
+            width: 95%;
+        }
+
+        img {
+            image-orientation: from-image;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="centerDiv">
+        <h3>Take a peek into our wonderful world...</h3>
+        <img id="viewer" class="mySlides" src="../IMAGES/GALLERY/9.jpg" data-number="0" style="padding-top:5px;" />
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+
+    setInterval(function () { SetImage() }, 3000);
+
+    $("#div").hide();
+
+    function SetImage() {
+
+        var viewer = $("#viewer");
+        var imageNum = viewer.attr("data-number");
+
+        imageNum++;
+        if (imageNum > 9)
+            imageNum = 0;
+
+        viewer.attr("src", "../IMAGES/GALLERY/" + imageNum + ".jpg")
+        viewer.attr("data-number", imageNum);
+
+    }
+</script>
